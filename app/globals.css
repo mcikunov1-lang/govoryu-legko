@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 28 50% 97%;
+    --foreground: 28 14% 22%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 28 14% 22%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 28 14% 22%;
+
+    --primary: 12 70% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 24 55% 93%;
+    --secondary-foreground: 28 14% 28%;
+
+    --muted: 28 35% 94%;
+    --muted-foreground: 30 9% 50%;
+
+    --accent: 12 55% 93%;
+    --accent-foreground: 12 40% 40%;
+
+    --destructive: 0 72% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 28 28% 90%;
+    --input: 28 28% 90%;
+    --ring: 12 70% 67%;
+
+    /* Brand accent palette from the reference illustration */
+    --mint: 150 36% 62%;
+    --sky: 205 55% 64%;
+    --sun: 40 88% 66%;
+    --coral: 12 70% 67%;
+    --blush: 350 70% 82%;
+
+    --radius: 1.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.22);
+    color: hsl(var(--foreground));
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * SHIMMER / "TAHOE GLASS" TEXT
+ * Same mechanics as the reference prompt (linear-gradient + background-clip:text
+ * + 200% background-size + shimmer keyframes) re-tinted to the warm coral brand
+ * so it stays legible over the cream background.
+ * ------------------------------------------------------------------------- */
+.shimmer-text {
+  color: transparent;
+  background: linear-gradient(
+    115deg,
+    hsl(12 72% 60%) 0%,
+    hsl(18 85% 72%) 22%,
+    hsl(36 90% 74%) 42%,
+    hsl(350 75% 80%) 50%,
+    hsl(36 90% 74%) 58%,
+    hsl(18 85% 72%) 78%,
+    hsl(12 72% 60%) 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 8px 22px rgba(229, 138, 114, 0.22));
+  animation: shimmer 6.5s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 220% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * SCROLL REVEAL
+ * Heavy, gentle fade-up with a soft blur as elements enter the viewport.
+ * ------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  filter: blur(8px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform, opacity;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .shimmer-text {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
