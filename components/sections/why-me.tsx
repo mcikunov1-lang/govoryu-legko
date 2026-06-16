@@ -1,14 +1,12 @@
 import React from "react";
 import { Heart, GraduationCap, Star, ShieldCheck, type LucideIcon } from "lucide-react";
-import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { Blob } from "@/components/decor";
+import { Stagger, StaggerItem } from "@/components/motion";
 
 type Reason = {
   icon: LucideIcon;
   title: string;
   text: string;
-  bg: string;
   fg: string;
 };
 
@@ -16,63 +14,62 @@ const REASONS: Reason[] = [
   {
     icon: Heart,
     title: "Люблю детей",
-    text: "Легко нахожу подход к каждому ребёнку.",
-    bg: "bg-blush/40",
-    fg: "text-[hsl(350_60%_55%)]",
+    text: "Легко нахожу подход к каждому: где-то нужна игра, где-то — терпение и тёплая поддержка.",
+    fg: "text-[hsl(350_62%_58%)]",
   },
   {
     icon: GraduationCap,
     title: "Высшее образование",
-    text: "Дипломированный специалист.",
-    bg: "bg-mint/30",
-    fg: "text-[hsl(150_36%_36%)]",
+    text: "Дипломированный логопед-дефектолог. Постоянно учусь и обновляю свои методики.",
+    fg: "text-[hsl(150_36%_38%)]",
   },
   {
     icon: Star,
     title: "Опыт работы",
-    text: "Более 7 лет практики с детьми.",
-    bg: "bg-sun/30",
-    fg: "text-[hsl(38_70%_42%)]",
+    text: "Более 7 лет частной практики и сотни детей, которые заговорили чисто и уверенно.",
+    fg: "text-[hsl(38_70%_44%)]",
   },
   {
     icon: ShieldCheck,
     title: "Проверенные методики",
-    text: "Работаю с современными эффективными подходами.",
-    bg: "bg-sky/30",
-    fg: "text-[hsl(205_55%_42%)]",
+    text: "Работаю по современным эффективным подходам и авторским игровым приёмам.",
+    fg: "text-[hsl(205_55%_44%)]",
   },
 ];
 
 export function WhyMe() {
   return (
-    <section id="why" className="relative overflow-hidden py-24 sm:py-28">
-      <Blob color="peach" variant={2} className="-right-28 top-20 h-80 w-80" opacity={0.25} />
-
-      <div className="mx-auto max-w-6xl px-4">
+    <section id="why" className="relative px-5 py-24 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
+          eyebrow="Почему я"
           title="Почему родители выбирают меня"
-          subtitle="Создаю тёплую атмосферу, в которой ребёнку хочется заниматься и расти"
+          subtitle="Создаю тёплую атмосферу, в которой ребёнку хочется заниматься, а родителю — спокойно."
         />
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {REASONS.map((r, i) => (
-            <Reveal key={r.title} delay={i * 90}>
-              <div className="group flex flex-col items-center text-center">
-                <span
-                  className={`grid h-24 w-24 place-items-center rounded-[2rem] ${r.bg} ${r.fg} shadow-soft transition-transform duration-500 ease-fluid group-hover:-translate-y-1.5 group-hover:rotate-3`}
-                >
-                  <r.icon className="h-10 w-10" strokeWidth={1.5} />
+        <Stagger
+          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+          gap={0.1}
+        >
+          {REASONS.map((r) => (
+            <StaggerItem key={r.title} className="h-full">
+              <div className="group flex h-full flex-col rounded-[1.8rem] border border-border/60 bg-card/60 p-7 backdrop-blur-sm transition-all duration-500 ease-fluid hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-soft">
+                <span className={`${r.fg}`}>
+                  <r.icon
+                    className="h-8 w-8 transition-transform duration-500 ease-fluid group-hover:scale-110"
+                    strokeWidth={1.4}
+                  />
                 </span>
                 <h3 className="mt-6 font-display text-lg font-bold text-foreground">
                   {r.title}
                 </h3>
-                <p className="mt-2 max-w-[15rem] text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {r.text}
                 </p>
               </div>
-            </Reveal>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

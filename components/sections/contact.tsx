@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Check, Lock, Send, PartyPopper } from "lucide-react";
-import { Reveal } from "@/components/reveal";
+import { Reveal } from "@/components/motion";
 import { Blob, Dots } from "@/components/decor";
 
 const PERKS = [

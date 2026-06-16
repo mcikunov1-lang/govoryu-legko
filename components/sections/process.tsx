@@ -1,118 +1,90 @@
 import React from "react";
 import Image from "next/image";
-import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { Blob } from "@/components/decor";
+import { Reveal, Parallax, Stagger, StaggerItem } from "@/components/motion";
 
 const STEPS = [
   {
     n: "01",
     title: "Диагностика",
-    text: "Определяем уровень речевого развития и цели занятий.",
-    ring: "ring-mint/50",
-    bg: "bg-mint/25",
-    fg: "text-[hsl(150_36%_34%)]",
+    text: "Определяю уровень речевого развития и цели занятий.",
+    fg: "text-[hsl(150_36%_36%)]",
   },
   {
     n: "02",
     title: "Планирование",
-    text: "Составляем индивидуальную программу для ребёнка.",
-    ring: "ring-sun/50",
-    bg: "bg-sun/25",
-    fg: "text-[hsl(38_70%_40%)]",
+    text: "Составляю индивидуальную программу под вашего ребёнка.",
+    fg: "text-[hsl(38_70%_42%)]",
   },
   {
     n: "03",
     title: "Занятия",
-    text: "Проводим интересные и игровые занятия в комфортной атмосфере.",
-    ring: "ring-sky/50",
-    bg: "bg-sky/25",
-    fg: "text-[hsl(205_55%_40%)]",
+    text: "Провожу интересные игровые занятия в тёплой атмосфере.",
+    fg: "text-[hsl(205_55%_42%)]",
   },
   {
     n: "04",
     title: "Результат",
-    text: "Отслеживаем прогресс и корректируем программу.",
-    ring: "ring-primary/40",
-    bg: "bg-primary/15",
+    text: "Отслеживаю прогресс и корректирую программу вместе с вами.",
     fg: "text-primary",
   },
 ];
 
 export function Process() {
   return (
-    <section
-      id="process"
-      className="relative overflow-hidden bg-secondary/40 py-24 sm:py-28"
-    >
-      <Blob color="mint" variant={2} className="-right-24 top-12 h-72 w-72" opacity={0.28} />
-      <Blob color="coral" variant={0} className="-left-24 bottom-0 h-72 w-72" opacity={0.22} />
-
-      <div className="mx-auto max-w-6xl px-4">
+    <section id="process" className="relative px-5 py-24 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
+          eyebrow="Как всё устроено"
           title="Как проходят занятия"
-          subtitle="Комфортная и эффективная работа в 4 шага"
+          subtitle="Комфортная и эффективная работа в четыре шага — без стресса для ребёнка и родителей."
         />
 
-        <div className="mt-16 grid items-center gap-12 lg:grid-cols-2">
-          {/* Steps */}
-          <div className="relative">
-            <span
-              className="absolute left-[27px] top-8 bottom-8 hidden w-px bg-gradient-to-b from-border via-border to-transparent sm:block"
-              aria-hidden="true"
-            />
-            <div className="flex flex-col gap-7">
-              {STEPS.map((s, i) => (
-                <Reveal key={s.n} delay={i * 110}>
-                  <div className="flex items-start gap-5">
-                    <span
-                      className={`relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-2xl ${s.bg} ${s.fg} font-display text-lg font-bold ring-4 ${s.ring} ring-offset-2 ring-offset-secondary/40`}
-                    >
-                      {s.n}
-                    </span>
-                    <div className="pt-1.5">
-                      <h3 className="font-display text-xl font-bold text-foreground">
-                        {s.title}
-                      </h3>
-                      <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-                        {s.text}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
+        <div className="mt-16 grid items-center gap-14 lg:grid-cols-2">
           {/* Photo */}
-          <Reveal delay={150} className="relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              <Blob
-                color="sun"
-                variant={1}
-                className="-left-10 -top-8 h-32 w-32"
-                opacity={0.55}
-              />
-              <Blob
-                color="blush"
-                variant={0}
-                className="-bottom-10 -right-8 h-36 w-36"
-                opacity={0.5}
-              />
-              <div className="relative rounded-[2.2rem] bg-card/70 p-2.5 shadow-soft-lg ring-1 ring-border/60 backdrop-blur-sm">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.7rem]">
+          <Reveal className="order-1 lg:order-none">
+            <div className="overflow-hidden rounded-[2.4rem] shadow-soft-lg ring-1 ring-white/50">
+              <Parallax distance={48} className="relative aspect-[5/4] w-full">
+                <div className="absolute inset-0 scale-110">
                   <Image
                     src="/images/lesson-process.jpg"
                     alt="Занятие по развитию речи и артикуляции"
                     fill
-                    sizes="(max-width: 1024px) 90vw, 520px"
+                    sizes="(max-width: 1024px) 90vw, 560px"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/10 via-transparent to-transparent" />
                 </div>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/15 via-transparent to-transparent" />
+              </Parallax>
             </div>
           </Reveal>
+
+          {/* Steps */}
+          <Stagger className="flex flex-col" gap={0.13}>
+            {STEPS.map((s, i) => (
+              <StaggerItem key={s.n}>
+                <div
+                  className={`flex items-start gap-6 py-6 ${
+                    i !== STEPS.length - 1 ? "border-b border-border/60" : ""
+                  }`}
+                >
+                  <span
+                    className={`font-display text-4xl font-extrabold leading-none ${s.fg}`}
+                  >
+                    {s.n}
+                  </span>
+                  <div className="pt-1">
+                    <h3 className="font-display text-xl font-bold text-foreground">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 max-w-sm leading-relaxed text-muted-foreground">
+                      {s.text}
+                    </p>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </div>
       </div>
     </section>

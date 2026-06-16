@@ -53,6 +53,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "cv01", "cv11";
+    overflow-x: hidden;
   }
   ::selection {
     background: hsl(var(--primary) / 0.22);
@@ -94,39 +95,23 @@
   }
 }
 
-/* ---------------------------------------------------------------------------
- * SCROLL REVEAL
- * Heavy, gentle fade-up with a soft blur as elements enter the viewport.
- * ------------------------------------------------------------------------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(36px);
-  filter: blur(8px);
-  transition:
-    opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
-    filter 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
-  will-change: transform, opacity;
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
+/* A softer, slower shimmer for very large display headings. */
+.shimmer-text--slow {
+  animation-duration: 9s;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    transition: none;
-  }
-  .shimmer-text {
-    animation: none;
-  }
-  html {
-    scroll-behavior: auto;
-  }
+/* Full-bleed helper: break a child out to the full viewport width. */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* Thin uppercase eyebrow label used above section titles. */
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
 .grain {

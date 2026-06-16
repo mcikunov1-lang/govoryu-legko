@@ -1,28 +1,42 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Reveal } from "@/components/reveal";
-import { Sprout } from "@/components/decor";
+import { Reveal } from "@/components/motion";
 
 export function SectionHeading({
+  eyebrow,
   title,
   subtitle,
-  shimmer = false,
+  shimmer = true,
+  align = "center",
   className,
 }: {
+  eyebrow?: string;
   title: string;
   subtitle?: string;
   shimmer?: boolean;
+  align?: "center" | "left";
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col items-center text-center", className)}>
-      <Reveal>
-        <Sprout className="mb-3 text-primary/70" />
-      </Reveal>
-      <Reveal delay={80}>
+    <div
+      className={cn(
+        "flex flex-col",
+        align === "center" ? "items-center text-center" : "items-start text-left",
+        className
+      )}
+    >
+      {eyebrow && (
+        <Reveal>
+          <span className="eyebrow inline-flex items-center gap-3 text-primary/80">
+            <span className="h-px w-8 bg-primary/40" />
+            {eyebrow}
+          </span>
+        </Reveal>
+      )}
+      <Reveal delay={90}>
         <h2
           className={cn(
-            "font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-[2.9rem]",
+            "mt-5 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-foreground sm:text-5xl md:text-[3.4rem]",
             shimmer && "shimmer-text"
           )}
         >
@@ -30,8 +44,13 @@ export function SectionHeading({
         </h2>
       </Reveal>
       {subtitle && (
-        <Reveal delay={160}>
-          <p className="mt-4 max-w-xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <Reveal delay={170}>
+          <p
+            className={cn(
+              "mt-5 text-balance text-base leading-relaxed text-muted-foreground sm:text-lg",
+              align === "center" ? "max-w-2xl" : "max-w-xl"
+            )}
+          >
             {subtitle}
           </p>
         </Reveal>

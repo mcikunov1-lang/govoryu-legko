@@ -2,160 +2,169 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, HeartHandshake, Sparkles, Target } from "lucide-react";
-import { Reveal } from "@/components/reveal";
-import { Blob, Dots } from "@/components/decor";
+import { motion } from "framer-motion";
+import { ChevronDown, Star } from "lucide-react";
+import { PrimaryCta, GhostCta } from "@/components/cta";
 
-const FEATURES = [
-  {
-    icon: HeartHandshake,
-    title: "Индивидуальный подход",
-    sub: "к каждому ребёнку",
-  },
-  { icon: Target, title: "Эффективные методики", sub: "и игровые занятия" },
-  { icon: Sparkles, title: "Видимый результат", sub: "уже после первых занятий" },
-];
+const EASE = [0.22, 0.61, 0.36, 1] as const;
+
+function Line({ children, delay }: { children: React.ReactNode; delay: number }) {
+  return (
+    <motion.span
+      className="block overflow-hidden"
+      initial={{ opacity: 0, y: 60 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: EASE, delay }}
+    >
+      {children}
+    </motion.span>
+  );
+}
 
 export function Hero() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden px-4 pb-16 pt-32 sm:pb-24 sm:pt-36 lg:pt-44"
+      className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-16 lg:pt-0 lg:pb-0"
     >
-      <span id="hero" className="absolute -top-24" aria-hidden="true" />
+      <span id="hero" className="absolute top-0" aria-hidden="true" />
 
-      {/* Background decor */}
-      <Blob color="peach" variant={0} className="-left-24 top-10 h-80 w-80" opacity={0.4} />
-      <Blob color="blush" variant={2} className="-right-20 top-40 h-72 w-72" opacity={0.35} />
-      <Dots className="left-6 top-44 hidden h-24 w-24 opacity-50 md:block" />
+      {/* Full-height immersive image, bleeding to the right edge (desktop) */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[48%] lg:block">
+        <motion.div
+          className="relative h-full w-full"
+          initial={{ scale: 1.12, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.4, ease: EASE }}
+        >
+          <Image
+            src="/images/hero-logoped.jpg"
+            alt="Логопед на занятии с ребёнком"
+            fill
+            priority
+            sizes="50vw"
+            className="object-cover"
+          />
+          {/* Blend the photo's left edge into the cream background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+        </motion.div>
+      </div>
 
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.12fr_0.88fr]">
-        {/* Left: copy */}
-        <div className="relative z-10">
-          <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              Логопед для детей от 3 лет
-            </span>
-          </Reveal>
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8">
+        <div className="max-w-2xl">
+          <motion.span
+            className="eyebrow inline-flex items-center gap-3 text-primary/80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: EASE }}
+          >
+            <span className="h-px w-8 bg-primary/40" />
+            Логопед для детей · от 3 лет
+          </motion.span>
 
-          <Reveal delay={90}>
-            <h1 className="mt-6 font-display text-[2.55rem] font-extrabold leading-[1.06] tracking-tight text-foreground sm:text-6xl lg:text-[3.35rem] xl:text-[3.75rem]">
-              Помогаю детям
-              <br />
-              говорить уверенно
-              <br />
-              <span className="shimmer-text">и с удовольствием</span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={170}>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-              Индивидуальные занятия с логопедом, которые проходят легко, в
-              игровой форме и дают результат, заметный с первых встреч.
-            </p>
-          </Reveal>
-
-          <Reveal delay={240}>
-            <div className="mt-9 grid max-w-md grid-cols-1 gap-4 sm:grid-cols-3">
-              {FEATURES.map((f) => (
-                <div key={f.title} className="flex flex-col items-start gap-2">
-                  <span className="grid h-11 w-11 place-items-center rounded-2xl bg-card text-primary shadow-soft ring-1 ring-border/60">
-                    <f.icon className="h-5 w-5" strokeWidth={1.6} />
-                  </span>
-                  <span className="text-sm font-semibold leading-tight text-foreground">
-                    {f.title}
-                  </span>
-                  <span className="-mt-1 text-xs text-muted-foreground">
-                    {f.sub}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={320}>
-            <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <a
-                href="#contact"
-                className="group inline-flex h-14 items-center gap-3 rounded-2xl bg-gradient-to-b from-primary to-[hsl(12_68%_61%)] pl-7 pr-3 text-base font-semibold text-primary-foreground shadow-glow ring-1 ring-primary/30 transition-transform duration-300 ease-fluid hover:scale-[1.02] active:scale-[0.98]"
-              >
-                Записаться на консультацию
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-white/20 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  <ArrowRight className="h-4 w-4" strokeWidth={2} />
-                </span>
-              </a>
-            </div>
-          </Reveal>
-
-          <Reveal delay={380}>
-            <p className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground">
-              <span className="grid h-5 w-5 place-items-center rounded-full bg-mint/30 text-[hsl(150_36%_38%)]">
-                ✓
+          <h1 className="mt-7 font-display text-[2.7rem] font-extrabold leading-[1.04] tracking-tight text-foreground sm:text-6xl lg:text-[4.4rem]">
+            <Line delay={0.15}>Помогаю детям</Line>
+            <Line delay={0.28}>говорить уверенно</Line>
+            <Line delay={0.41}>
+              <span className="shimmer-text shimmer-text--slow">
+                и с удовольствием
               </span>
-              Первая консультация — бесплатно!
-            </p>
-          </Reveal>
-        </div>
+            </Line>
+          </h1>
 
-        {/* Right: photo */}
-        <Reveal delay={200} className="relative z-10">
-          <div className="relative mx-auto max-w-md lg:max-w-none">
-            <Blob
-              color="coral"
-              variant={1}
-              className="-right-10 -top-10 h-40 w-40"
-              opacity={0.55}
-            />
-            <Blob
-              color="mint"
-              variant={2}
-              className="-bottom-12 -left-10 h-36 w-36"
-              opacity={0.5}
-            />
+          <motion.p
+            className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.6 }}
+          >
+            Индивидуальные занятия, которые проходят легко и в игре. Ставлю звуки,
+            развиваю речь и готовлю к школе — бережно, по собственной программе для
+            каждого ребёнка.
+          </motion.p>
 
-            {/* Double-bezel image card */}
-            <div className="relative rounded-[2.2rem] bg-card/70 p-2.5 shadow-soft-lg ring-1 ring-border/60 backdrop-blur-sm">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.7rem] sm:aspect-[5/5]">
+          <motion.div
+            className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.75 }}
+          >
+            <PrimaryCta>Записаться на консультацию</PrimaryCta>
+            <GhostCta href="#services">Смотреть услуги</GhostCta>
+          </motion.div>
+
+          {/* Social proof — avatar stack instead of badge chips */}
+          <motion.div
+            className="mt-12 flex items-center gap-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, ease: EASE, delay: 0.95 }}
+          >
+            <div className="flex -space-x-3">
+              {["/images/avatar-1.jpg", "/images/avatar-2.jpg", "/images/avatar-3.jpg"].map(
+                (src) => (
+                  <span
+                    key={src}
+                    className="relative h-11 w-11 overflow-hidden rounded-full ring-[3px] ring-background"
+                  >
+                    <Image src={src} alt="" fill sizes="44px" className="object-cover" />
+                  </span>
+                )
+              )}
+            </div>
+            <div>
+              <div className="flex items-center gap-0.5 text-primary">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
+                ))}
+              </div>
+              <p className="mt-0.5 text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">200+ семей</span> уже
+                доверили мне речь ребёнка
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Mobile / tablet image */}
+          <motion.div
+            className="mt-12 lg:hidden"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: EASE, delay: 1.05 }}
+          >
+            <div className="overflow-hidden rounded-[2rem] shadow-soft-lg ring-1 ring-white/50">
+              <div className="relative aspect-[4/3] w-full">
                 <Image
                   src="/images/hero-logoped.jpg"
                   alt="Логопед на занятии с ребёнком"
                   fill
-                  priority
-                  sizes="(max-width: 1024px) 90vw, 520px"
+                  sizes="100vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/15 via-transparent to-transparent" />
               </div>
-
-              {/* Floating stat chip */}
-              <div className="absolute -bottom-5 left-5 flex items-center gap-3 rounded-2xl bg-card px-4 py-3 shadow-soft ring-1 ring-border/60">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/12 text-primary">
-                  <Sparkles className="h-5 w-5" strokeWidth={1.6} />
-                </span>
-                <div className="leading-tight">
-                  <div className="font-display text-lg font-bold text-foreground">
-                    7+ лет
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    практики с детьми
-                  </div>
-                </div>
-              </div>
             </div>
-
-            {/* Floating annotation chip */}
-            <div className="absolute -right-2 top-8 hidden rotate-3 rounded-2xl bg-card px-4 py-2.5 shadow-soft ring-1 ring-border/60 sm:block">
-              <span className="text-xs font-semibold text-foreground">
-                Правильное
-              </span>
-              <span className="block text-[11px] text-muted-foreground">
-                произношение звуков
-              </span>
-            </div>
-          </div>
-        </Reveal>
+          </motion.div>
+        </div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.a
+        href="#stats"
+        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground lg:flex"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.3 }}
+      >
+        <span className="text-[11px] uppercase tracking-[0.2em]">листайте</span>
+        <motion.span
+          animate={{ y: [0, 7, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="h-5 w-5" />
+        </motion.span>
+      </motion.a>
     </section>
   );
 }
