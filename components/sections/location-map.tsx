@@ -16,7 +16,7 @@ const INFO = [
 
 export function LocationMap() {
   return (
-    <section id="location" className="relative px-5 pb-24 pt-8 sm:px-8 sm:pb-28">
+    <section id="location" className="surface-alt relative px-5 pb-24 pt-16 sm:px-8 sm:pb-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           align="left"
@@ -42,7 +42,7 @@ export function LocationMap() {
               </div>
 
               {/* Info panel */}
-              <div className="flex flex-col justify-between gap-8 bg-[hsl(16_22%_13%)] p-8 sm:p-10">
+              <div className="flex flex-col justify-between gap-8 bg-[hsl(20_18%_8%)] p-8 sm:p-10">
                 <div>
                   <h3 className="font-display text-2xl font-bold text-foreground">
                     Кабинет логопеда

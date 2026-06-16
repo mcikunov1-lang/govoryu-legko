@@ -49,10 +49,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" className={`${sans.variable} ${display.variable}`}>
-      <body className="font-sans">
-        <div className="grain" aria-hidden="true" />
-        {children}
-      </body>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }

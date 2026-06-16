@@ -21,8 +21,8 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative px-4 py-24 sm:py-28">
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-[hsl(16_22%_13%)] p-8 shadow-soft-lg ring-1 ring-white/10 sm:p-12 lg:p-16">
+    <section id="contact" className="surface-alt relative px-4 py-24 sm:py-28">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-[hsl(20_18%_8%)] p-8 shadow-soft-lg ring-1 ring-white/10 sm:p-12 lg:p-16">
         <Blob color="coral" variant={0} className="-right-16 -top-16 h-64 w-64" opacity={0.4} />
         <Blob color="blush" variant={2} className="-bottom-16 -left-16 h-56 w-56" opacity={0.45} />
         <Dots className="bottom-8 right-10 hidden h-20 w-20 opacity-40 lg:block" />

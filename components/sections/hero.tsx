@@ -53,19 +53,47 @@ export function Hero() {
     >
       <span id="hero" className="absolute top-0" aria-hidden="true" />
 
-      {/* Desktop: full-height video with a wave-cut inner edge, zooming in on load */}
+      {/* Animated wave clip-path used to cut the video's inner edge */}
+      <svg width="0" height="0" className="absolute" aria-hidden="true">
+        <defs>
+          <clipPath id="heroWave" clipPathUnits="objectBoundingBox">
+            <path d="M1 0 L0.13 0 C0 0.17 0.26 0.33 0.1 0.5 C-0.06 0.67 0.26 0.83 0.13 1 L1 1 Z">
+              <animate
+                attributeName="d"
+                dur="7s"
+                repeatCount="indefinite"
+                calcMode="spline"
+                keyTimes="0;0.5;1"
+                keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
+                values="M1 0 L0.13 0 C0 0.17 0.26 0.33 0.1 0.5 C-0.06 0.67 0.26 0.83 0.13 1 L1 1 Z;
+                M1 0 L0.1 0 C0.26 0.17 0 0.33 0.16 0.5 C0.3 0.67 0 0.83 0.1 1 L1 1 Z;
+                M1 0 L0.13 0 C0 0.17 0.26 0.33 0.1 0.5 C-0.06 0.67 0.26 0.83 0.13 1 L1 1 Z"
+              />
+            </path>
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* Desktop: full-height video, wider toward the centre, with an animated wave edge */}
       <motion.div
-        className="wave-mask-left pointer-events-none absolute inset-y-0 right-0 hidden w-[52%] lg:block"
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[47%] xl:w-[53%] lg:block"
         initial={{ scale: 1.14, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.8, ease: EASE }}
       >
-        <HeroVideo className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+        <div
+          className="relative h-full w-full"
+          style={{ clipPath: "url(#heroWave)", WebkitClipPath: "url(#heroWave)" }}
+        >
+          <HeroVideo className="h-full w-full object-cover" />
+          {/* legibility scrim where text can reach the video's edge */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/25 to-transparent" />
+        </div>
       </motion.div>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <div className="max-w-2xl">
+      {/* Text — flush to the left edge, larger */}
+      <div className="relative z-10 w-full px-6 sm:px-10 lg:pl-16 lg:pr-0 xl:pl-24">
+        <div className="max-w-[36rem] lg:max-w-[38rem] xl:max-w-[46rem]">
           <motion.span
             className="eyebrow inline-flex items-center gap-3 text-primary"
             {...fromLeft(0)}
@@ -74,7 +102,7 @@ export function Hero() {
             Логопед для детей · онлайн и очно
           </motion.span>
 
-          <h1 className="mt-8 font-display text-[3rem] font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-7xl lg:text-[5rem]">
+          <h1 className="mt-8 font-display text-[3rem] font-extrabold leading-[1.04] tracking-tight text-foreground sm:text-7xl lg:text-[4rem] xl:text-[5.2rem]">
             <Line delay={0.15}>Ваш ребёнок</Line>
             <Line delay={0.3}>заговорит чисто</Line>
             <Line delay={0.45}>
