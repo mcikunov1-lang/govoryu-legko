@@ -30,6 +30,7 @@ export function Reviews() {
     <section id="reviews" className="relative px-5 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
+          align="left"
           eyebrow="Отзывы"
           title="Что говорят родители"
           subtitle="Самая лучшая оценка моей работы — это счастливые дети и их успехи."

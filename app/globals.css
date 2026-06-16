@@ -68,37 +68,34 @@
  * + 200% background-size + shimmer keyframes) re-tinted to the warm coral brand
  * so it stays legible over the cream background.
  * ------------------------------------------------------------------------- */
+/* Accent text — solid warm coral (no gradient: cleaner, more professional). */
 .shimmer-text {
-  color: transparent;
-  background: linear-gradient(
-    115deg,
-    hsl(12 72% 60%) 0%,
-    hsl(18 85% 72%) 22%,
-    hsl(36 90% 74%) 42%,
-    hsl(350 75% 80%) 50%,
-    hsl(36 90% 74%) 58%,
-    hsl(18 85% 72%) 78%,
-    hsl(12 72% 60%) 100%
-  );
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  filter: drop-shadow(0 8px 22px rgba(229, 138, 114, 0.22));
-  animation: shimmer 6.5s linear infinite;
+  color: hsl(var(--primary));
 }
-
-@keyframes shimmer {
-  0% {
-    background-position: 220% center;
-  }
-  100% {
-    background-position: 0% center;
-  }
-}
-
-/* A softer, slower shimmer for very large display headings. */
 .shimmer-text--slow {
-  animation-duration: 9s;
+  color: hsl(var(--primary));
+}
+
+/* ---------------------------------------------------------------------------
+ * WAVE-CUT MEDIA EDGES
+ * Masks an image/video so its inner edge reads as a soft wave instead of a
+ * hard rectangular seam against the page.
+ * ------------------------------------------------------------------------- */
+.wave-mask-left {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%201000'%20preserveAspectRatio='none'%3E%3Cpath%20d='M200%200%20L90%200%20C40%20165%20130%20335%2085%20500%20C40%20665%20130%20835%2090%201000%20L200%201000%20Z'%20fill='%23fff'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%201000'%20preserveAspectRatio='none'%3E%3Cpath%20d='M200%200%20L90%200%20C40%20165%20130%20335%2085%20500%20C40%20665%20130%20835%2090%201000%20L200%201000%20Z'%20fill='%23fff'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.wave-mask-top {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20200'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%20200%20L0%2090%20C165%2040%20335%20130%20500%2085%20C665%2040%20835%20130%201000%2090%20L1000%20200%20Z'%20fill='%23fff'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20200'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%20200%20L0%2090%20C165%2040%20335%20130%20500%2085%20C665%2040%20835%20130%201000%2090%20L1000%20200%20Z'%20fill='%23fff'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 /* Full-bleed helper: break a child out to the full viewport width. */

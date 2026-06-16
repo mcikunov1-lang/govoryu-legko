@@ -22,7 +22,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative px-4 py-24 sm:py-28">
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[hsl(14_42%_15%)] via-[hsl(20_24%_11%)] to-[hsl(350_28%_14%)] p-8 shadow-soft-lg ring-1 ring-white/10 sm:p-12 lg:p-16">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-[hsl(16_22%_13%)] p-8 shadow-soft-lg ring-1 ring-white/10 sm:p-12 lg:p-16">
         <Blob color="coral" variant={0} className="-right-16 -top-16 h-64 w-64" opacity={0.4} />
         <Blob color="blush" variant={2} className="-bottom-16 -left-16 h-56 w-56" opacity={0.45} />
         <Dots className="bottom-8 right-10 hidden h-20 w-20 opacity-40 lg:block" />
@@ -90,7 +90,7 @@ export function Contact() {
                   />
                   <button
                     type="submit"
-                    className="group mt-1 inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-b from-primary to-[hsl(12_68%_61%)] text-base font-semibold text-primary-foreground shadow-glow ring-1 ring-primary/30 transition-transform duration-300 ease-fluid hover:scale-[1.02] active:scale-[0.98]"
+                    className="group mt-1 inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl bg-primary text-base font-semibold text-primary-foreground shadow-glow ring-1 ring-primary/30 transition-all duration-300 ease-fluid hover:bg-[hsl(12_78%_56%)] hover:scale-[1.01] active:scale-[0.98]"
                   >
                     Записаться на бесплатную диагностику
                     <Send

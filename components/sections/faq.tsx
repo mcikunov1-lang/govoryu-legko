@@ -72,6 +72,7 @@ export function Faq() {
     <section id="faq" className="relative px-5 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-3xl">
         <SectionHeading
+          align="right"
           eyebrow="Вопросы и ответы"
           title="Частые вопросы"
           subtitle="Собрала то, что чаще всего спрашивают родители перед началом занятий."

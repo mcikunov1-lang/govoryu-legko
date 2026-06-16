@@ -19,7 +19,7 @@ export function About() {
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[0.92fr_1.08fr]">
         {/* Portrait */}
         <Reveal className="relative mx-auto w-full max-w-md lg:mx-0">
-          <div className="absolute -inset-4 -z-10 rounded-[2.6rem] bg-gradient-to-br from-primary/15 via-blush/20 to-mint/15" />
+          <div className="absolute -inset-4 -z-10 rounded-[2.6rem] bg-primary/10" />
           <div className="overflow-hidden rounded-[2.2rem] shadow-soft-lg ring-1 ring-white/10">
             <Parallax distance={36} className="relative aspect-[4/5] w-full">
               <div className="absolute inset-0 scale-110">

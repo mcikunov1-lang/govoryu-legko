@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Onest } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const sans = Manrope({
@@ -8,10 +8,10 @@ const sans = Manrope({
   variable: "--font-sans",
 });
 
-const display = Onest({
+const display = Playfair_Display({
   subsets: ["latin", "cyrillic"],
   display: "swap",
-  weight: ["500", "600", "700", "800"],
+  weight: ["600", "700", "800", "900"],
   variable: "--font-display",
 });
 

@@ -54,6 +54,7 @@ export function Services() {
     <section id="services" className="relative px-5 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
+          align="left"
           eyebrow="С чем помогаю"
           title="Услуги логопеда"
           subtitle="Найдём и решим конкретную речевую задачу вашего ребёнка — по индивидуальной программе и в комфортном темпе."

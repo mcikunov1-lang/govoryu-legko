@@ -12,7 +12,7 @@ export function BrandMark({
 }) {
   return (
     <a href="#hero" className={cn("flex items-center gap-2.5", className)}>
-      <span className="relative grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-[hsl(18_82%_72%)] shadow-glow">
+      <span className="relative grid h-10 w-10 place-items-center rounded-2xl bg-primary shadow-glow">
         <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
           <path
             d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-4 3v-3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
@@ -99,7 +99,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="hidden h-11 items-center whitespace-nowrap rounded-full bg-gradient-to-b from-primary to-[hsl(12_68%_56%)] px-6 text-sm font-semibold text-primary-foreground shadow-glow ring-1 ring-primary/30 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97] sm:inline-flex"
+            className="hidden h-11 items-center whitespace-nowrap rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-glow ring-1 ring-primary/30 transition-all duration-200 hover:scale-[1.03] hover:bg-[hsl(12_78%_56%)] active:scale-[0.97] sm:inline-flex"
           >
             Записаться бесплатно
           </a>
@@ -163,7 +163,7 @@ export function Header() {
           href="#contact"
           onClick={() => setOpen(false)}
           className={cn(
-            "mt-8 inline-flex h-14 items-center justify-center rounded-2xl bg-gradient-to-b from-primary to-[hsl(12_68%_56%)] text-base font-semibold text-primary-foreground shadow-glow transition-all duration-500",
+            "mt-8 inline-flex h-14 items-center justify-center rounded-2xl bg-primary text-base font-semibold text-primary-foreground shadow-glow transition-all duration-500",
             open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           )}
           style={{ transitionDelay: open ? "560ms" : "0ms" }}

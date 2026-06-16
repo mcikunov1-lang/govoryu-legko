@@ -6,29 +6,36 @@ export function SectionHeading({
   eyebrow,
   title,
   subtitle,
-  shimmer = true,
+  accent = false,
   align = "center",
   className,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
-  shimmer?: boolean;
-  align?: "center" | "left";
+  /** Render the title in the coral accent colour. */
+  accent?: boolean;
+  align?: "center" | "left" | "right";
   className?: string;
 }) {
+  const alignClass =
+    align === "center"
+      ? "items-center text-center"
+      : align === "right"
+        ? "items-end text-right"
+        : "items-start text-left";
+
   return (
-    <div
-      className={cn(
-        "flex flex-col",
-        align === "center" ? "items-center text-center" : "items-start text-left",
-        className
-      )}
-    >
+    <div className={cn("flex flex-col", alignClass, className)}>
       {eyebrow && (
         <Reveal>
-          <span className="eyebrow inline-flex items-center gap-3 text-primary/80">
-            <span className="h-px w-8 bg-primary/40" />
+          <span
+            className={cn(
+              "eyebrow inline-flex items-center gap-3 text-primary",
+              align === "right" && "flex-row-reverse"
+            )}
+          >
+            <span className="h-px w-10 bg-primary/50" />
             {eyebrow}
           </span>
         </Reveal>
@@ -36,8 +43,8 @@ export function SectionHeading({
       <Reveal delay={90}>
         <h2
           className={cn(
-            "mt-5 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-foreground sm:text-5xl md:text-[3.4rem]",
-            shimmer && "shimmer-text"
+            "mt-5 font-display text-4xl font-extrabold leading-[1.06] tracking-tight sm:text-5xl md:text-[3.6rem]",
+            accent ? "text-primary" : "text-foreground"
           )}
         >
           {title}
@@ -47,7 +54,7 @@ export function SectionHeading({
         <Reveal delay={170}>
           <p
             className={cn(
-              "mt-5 text-balance text-base leading-relaxed text-muted-foreground sm:text-lg",
+              "mt-5 text-balance text-lg leading-relaxed text-muted-foreground",
               align === "center" ? "max-w-2xl" : "max-w-xl"
             )}
           >
