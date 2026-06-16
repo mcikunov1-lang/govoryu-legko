@@ -60,15 +60,15 @@ export function Hero() {
             transition={{ duration: 0.8, ease: EASE }}
           >
             <span className="h-px w-8 bg-primary/40" />
-            Логопед для детей · от 3 лет
+            Логопед для детей · онлайн и очно
           </motion.span>
 
           <h1 className="mt-7 font-display text-[2.7rem] font-extrabold leading-[1.04] tracking-tight text-foreground sm:text-6xl lg:text-[4.4rem]">
-            <Line delay={0.15}>Помогаю детям</Line>
-            <Line delay={0.28}>говорить уверенно</Line>
+            <Line delay={0.15}>Ваш ребёнок</Line>
+            <Line delay={0.28}>заговорит чисто —</Line>
             <Line delay={0.41}>
               <span className="shimmer-text shimmer-text--slow">
-                и с удовольствием
+                в игре, без слёз
               </span>
             </Line>
           </h1>
@@ -79,9 +79,9 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: EASE, delay: 0.6 }}
           >
-            Индивидуальные занятия, которые проходят легко и в игре. Ставлю звуки,
-            развиваю речь и готовлю к школе — бережно, по собственной программе для
-            каждого ребёнка.
+            Не ждите, пока «само пройдёт». Поставлю звуки, запущу речь и подготовлю
+            к школе — по программе под вашего ребёнка. Первый разбор речи и план
+            занятий — бесплатно.
           </motion.p>
 
           <motion.div
@@ -90,8 +90,8 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: EASE, delay: 0.75 }}
           >
-            <PrimaryCta>Записаться на консультацию</PrimaryCta>
-            <GhostCta href="#services">Смотреть услуги</GhostCta>
+            <PrimaryCta>Записаться бесплатно</PrimaryCta>
+            <GhostCta href="#process">Как это работает</GhostCta>
           </motion.div>
 
           {/* Social proof — avatar stack instead of badge chips */}
@@ -120,8 +120,8 @@ export function Hero() {
                 ))}
               </div>
               <p className="mt-0.5 text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">200+ семей</span> уже
-                доверили мне речь ребёнка
+                <span className="font-semibold text-foreground">200+ детей</span> уже
+                заговорили чисто на моих занятиях
               </p>
             </div>
           </motion.div>
@@ -133,7 +133,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: EASE, delay: 1.05 }}
           >
-            <div className="overflow-hidden rounded-[2rem] shadow-soft-lg ring-1 ring-white/50">
+            <div className="overflow-hidden rounded-[2rem] shadow-soft-lg ring-1 ring-white/10">
               <div className="relative aspect-[4/3] w-full">
                 <Image
                   src="/images/hero-logoped.jpg"
@@ -142,7 +142,7 @@ export function Hero() {
                   sizes="100vw"
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/15 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               </div>
             </div>
           </motion.div>

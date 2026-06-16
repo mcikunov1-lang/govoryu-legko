@@ -79,7 +79,7 @@ export function Header() {
           "mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-[1.4rem] px-4 py-2.5 transition-all duration-500 ease-fluid sm:px-5",
           scrolled
             ? "bg-card/80 shadow-soft ring-1 ring-border/70 backdrop-blur-xl"
-            : "bg-card/40 ring-1 ring-white/40 backdrop-blur-md"
+            : "bg-card/40 ring-1 ring-white/10 backdrop-blur-md"
         )}
       >
         <BrandMark />
@@ -99,9 +99,9 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="hidden h-11 items-center rounded-full bg-gradient-to-b from-primary to-[hsl(12_68%_62%)] px-6 text-sm font-semibold text-primary-foreground shadow-glow ring-1 ring-primary/30 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97] sm:inline-flex"
+            className="hidden h-11 items-center whitespace-nowrap rounded-full bg-gradient-to-b from-primary to-[hsl(12_68%_56%)] px-6 text-sm font-semibold text-primary-foreground shadow-glow ring-1 ring-primary/30 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97] sm:inline-flex"
           >
-            Записаться
+            Записаться бесплатно
           </a>
 
           <button
@@ -163,12 +163,12 @@ export function Header() {
           href="#contact"
           onClick={() => setOpen(false)}
           className={cn(
-            "mt-8 inline-flex h-14 items-center justify-center rounded-2xl bg-gradient-to-b from-primary to-[hsl(12_68%_62%)] text-base font-semibold text-primary-foreground shadow-glow transition-all duration-500",
+            "mt-8 inline-flex h-14 items-center justify-center rounded-2xl bg-gradient-to-b from-primary to-[hsl(12_68%_56%)] text-base font-semibold text-primary-foreground shadow-glow transition-all duration-500",
             open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           )}
           style={{ transitionDelay: open ? "560ms" : "0ms" }}
         >
-          Записаться на консультацию
+          Записаться на бесплатную диагностику
         </a>
       </div>
     </header>

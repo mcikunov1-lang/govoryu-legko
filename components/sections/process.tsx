@@ -6,26 +6,26 @@ import { Reveal, Parallax, Stagger, StaggerItem } from "@/components/motion";
 const STEPS = [
   {
     n: "01",
-    title: "Диагностика",
-    text: "Определяю уровень речевого развития и цели занятий.",
-    fg: "text-[hsl(150_36%_36%)]",
+    title: "Бесплатная диагностика",
+    text: "Определю проблему и цель, назову план и сроки. Вы сразу поймёте, что и зачем делать.",
+    fg: "text-mint",
   },
   {
     n: "02",
-    title: "Планирование",
-    text: "Составляю индивидуальную программу под вашего ребёнка.",
-    fg: "text-[hsl(38_70%_42%)]",
+    title: "Программа под ребёнка",
+    text: "Составлю занятия именно под вашего ребёнка — без шаблонов и «воды».",
+    fg: "text-sun",
   },
   {
     n: "03",
-    title: "Занятия",
-    text: "Провожу интересные игровые занятия в тёплой атмосфере.",
-    fg: "text-[hsl(205_55%_42%)]",
+    title: "Занятия в игре",
+    text: "Играем и учимся: ребёнку весело, а звуки и речь закрепляются легко.",
+    fg: "text-sky",
   },
   {
     n: "04",
-    title: "Результат",
-    text: "Отслеживаю прогресс и корректирую программу вместе с вами.",
+    title: "Видимый результат",
+    text: "Отслеживаем прогресс вместе — вы видите, как ребёнок меняется неделя за неделей.",
     fg: "text-primary",
   },
 ];
@@ -35,15 +35,15 @@ export function Process() {
     <section id="process" className="relative px-5 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Как всё устроено"
+          eyebrow="Как мы начнём"
           title="Как проходят занятия"
-          subtitle="Комфортная и эффективная работа в четыре шага — без стресса для ребёнка и родителей."
+          subtitle="Понятный путь от первого звонка до свободной речи — без стресса для ребёнка и родителей."
         />
 
         <div className="mt-16 grid items-center gap-14 lg:grid-cols-2">
           {/* Photo */}
           <Reveal className="order-1 lg:order-none">
-            <div className="overflow-hidden rounded-[2.4rem] shadow-soft-lg ring-1 ring-white/50">
+            <div className="overflow-hidden rounded-[2.4rem] shadow-soft-lg ring-1 ring-white/10">
               <Parallax distance={48} className="relative aspect-[5/4] w-full">
                 <div className="absolute inset-0 scale-110">
                   <Image
@@ -54,7 +54,7 @@ export function Process() {
                     className="object-cover"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/15 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </Parallax>
             </div>
           </Reveal>

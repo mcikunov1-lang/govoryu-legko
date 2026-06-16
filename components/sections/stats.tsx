@@ -28,17 +28,17 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 }
 
 const STATS = [
-  { to: 7, suffix: "+", label: "лет практики с детьми" },
-  { to: 200, suffix: "+", label: "семей доверили мне ребёнка" },
-  { to: 4, suffix: "", label: "направления работы" },
-  { to: 98, suffix: "%", label: "родителей видят результат" },
+  { to: 7, suffix: "+", label: "лет ставлю детям речь" },
+  { to: 200, suffix: "+", label: "детей заговорили чисто" },
+  { to: 3, suffix: " нед.", label: "и видны первые результаты" },
+  { to: 98, suffix: "%", label: "родителей рекомендуют меня" },
 ];
 
 export function Stats() {
   return (
     <section id="stats" className="relative px-5 py-16 sm:px-8 sm:py-20">
       <div className="mx-auto max-w-6xl">
-        <div className="rounded-[2.5rem] border border-white/50 bg-card/55 px-6 py-12 shadow-soft backdrop-blur-xl sm:px-12">
+        <div className="rounded-[2.5rem] border border-white/10 bg-card/55 px-6 py-12 shadow-soft backdrop-blur-xl sm:px-12">
           <Stagger
             className="grid grid-cols-2 gap-y-10 sm:gap-x-6 lg:grid-cols-4"
             gap={0.14}

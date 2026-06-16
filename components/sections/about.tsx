@@ -8,9 +8,9 @@ import { PrimaryCta } from "@/components/cta";
 
 const HIGHLIGHTS = [
   { icon: GraduationCap, text: "Высшее дефектологическое образование" },
-  { icon: BadgeCheck, text: "Более 7 лет частной практики с детьми" },
-  { icon: Laptop, text: "Занятия очно и онлайн по всему миру" },
-  { icon: Puzzle, text: "Авторская игровая методика для каждого" },
+  { icon: BadgeCheck, text: "7+ лет частной практики с детьми" },
+  { icon: Laptop, text: "Занятия очно и онлайн — из любого города" },
+  { icon: Puzzle, text: "Программа под конкретного ребёнка" },
 ];
 
 export function About() {
@@ -20,7 +20,7 @@ export function About() {
         {/* Portrait */}
         <Reveal className="relative mx-auto w-full max-w-md lg:mx-0">
           <div className="absolute -inset-4 -z-10 rounded-[2.6rem] bg-gradient-to-br from-primary/15 via-blush/20 to-mint/15" />
-          <div className="overflow-hidden rounded-[2.2rem] shadow-soft-lg ring-1 ring-white/50">
+          <div className="overflow-hidden rounded-[2.2rem] shadow-soft-lg ring-1 ring-white/10">
             <Parallax distance={36} className="relative aspect-[4/5] w-full">
               <div className="absolute inset-0 scale-110">
                 <Image
@@ -54,24 +54,22 @@ export function About() {
           </Reveal>
           <Reveal delay={90}>
             <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-foreground sm:text-5xl">
-              Логопед, к которому
+              Помогу там, где
               <br />
-              <span className="shimmer-text">тянутся дети</span>
+              <span className="shimmer-text">«само» не проходит</span>
             </h2>
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Я убеждена: ребёнок раскрывается там, где ему тепло и интересно.
-              Поэтому мои занятия — это не «уроки», а увлекательная игра, в которой
-              незаметно ставятся звуки, расширяется словарный запас и появляется
-              уверенность в себе.
+              Ребёнок молчит или путает звуки, его не понимают сверстники, а до школы
+              остаётся всё меньше времени — и тревога растёт. Знакомо?
             </p>
           </Reveal>
           <Reveal delay={220}>
             <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-              За каждым результатом стоит индивидуальная программа, бережный темп и
-              честный диалог с родителями. Я рядом на всём пути — от первого звука до
-              свободной, красивой речи.
+              Я выстраиваю занятия как игру: ребёнку интересно, а звуки и речь
+              появляются будто сами собой. Вы видите прогресс с первых недель и всегда
+              понимаете, что и зачем мы делаем.
             </p>
           </Reveal>
 
@@ -92,7 +90,7 @@ export function About() {
 
           <Reveal delay={340}>
             <div className="mt-10">
-              <PrimaryCta>Познакомиться на консультации</PrimaryCta>
+              <PrimaryCta>Записаться бесплатно</PrimaryCta>
             </div>
           </Reveal>
         </div>
