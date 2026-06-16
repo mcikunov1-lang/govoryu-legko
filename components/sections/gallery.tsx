@@ -40,7 +40,7 @@ const TILES: Tile[] = [
 
 export function Gallery() {
   return (
-    <section id="gallery" className="surface-alt relative px-5 py-24 sm:px-8 sm:py-28">
+    <section id="gallery" className="relative px-5 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           align="left"

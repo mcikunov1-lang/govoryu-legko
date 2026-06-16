@@ -51,7 +51,7 @@ const SERVICES: Service[] = [
 
 export function Services() {
   return (
-    <section id="services" className="surface-alt relative px-5 py-24 sm:px-8 sm:py-28">
+    <section id="services" className="relative px-5 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           align="left"

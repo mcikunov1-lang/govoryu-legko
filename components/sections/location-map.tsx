@@ -16,7 +16,7 @@ const INFO = [
 
 export function LocationMap() {
   return (
-    <section id="location" className="surface-alt relative px-5 pb-24 pt-16 sm:px-8 sm:pb-28">
+    <section id="location" className="relative px-5 pb-24 pt-16 sm:px-8 sm:pb-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           align="left"

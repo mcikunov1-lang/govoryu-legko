@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="overflow-x-hidden">
+      <main className="page-surface overflow-x-hidden">
         <Hero />
         <Stats />
         <About />

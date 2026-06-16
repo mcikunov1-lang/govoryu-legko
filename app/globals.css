@@ -55,8 +55,6 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "cv01", "cv11";
     overflow-x: hidden;
-    background-image: radial-gradient(hsl(0 0% 100% / 0.04) 1px, transparent 1px);
-    background-size: 22px 22px;
   }
   ::selection {
     background: hsl(var(--primary) / 0.22);
@@ -114,12 +112,19 @@
   text-transform: uppercase;
 }
 
-/* Alternating section surface — a touch lighter than the base, with the same
- * subtle dot field, so blocks read as a clean checkerboard. */
-.surface-alt {
-  background-color: hsl(22 14% 12%);
-  background-image: radial-gradient(hsl(0 0% 100% / 0.05) 1px, transparent 1px);
-  background-size: 22px 22px;
-  border-top: 1px solid hsl(0 0% 100% / 0.06);
-  border-bottom: 1px solid hsl(0 0% 100% / 0.06);
+/* Whole-page background that gently breathes between the base dark and a
+ * slightly warmer tone — smooth, seamless, no hard block edges, no speckle. */
+.page-surface {
+  background-image: linear-gradient(
+    180deg,
+    hsl(24 16% 8%) 0%,
+    hsl(20 15% 11%) 14%,
+    hsl(24 16% 8%) 28%,
+    hsl(20 15% 11%) 42%,
+    hsl(24 16% 8%) 56%,
+    hsl(20 15% 11%) 70%,
+    hsl(24 16% 8%) 84%,
+    hsl(20 15% 11%) 96%,
+    hsl(24 16% 8%) 100%
+  );
 }

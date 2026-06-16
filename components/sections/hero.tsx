@@ -53,9 +53,10 @@ export function Hero() {
     >
       <span id="hero" className="absolute top-0" aria-hidden="true" />
 
-      {/* Animated wave clip-path used to cut the video's inner edge */}
+      {/* Animated wave clip-paths */}
       <svg width="0" height="0" className="absolute" aria-hidden="true">
         <defs>
+          {/* Desktop: wavy left edge */}
           <clipPath id="heroWave" clipPathUnits="objectBoundingBox">
             <path d="M1 0 L0.13 0 C0 0.17 0.26 0.33 0.1 0.5 C-0.06 0.67 0.26 0.83 0.13 1 L1 1 Z">
               <animate
@@ -71,10 +72,11 @@ export function Hero() {
               />
             </path>
           </clipPath>
+
         </defs>
       </svg>
 
-      {/* Desktop: full-height video, wider toward the centre, with an animated wave edge */}
+      {/* Desktop: full-height video with an animated wave edge */}
       <motion.div
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-[47%] xl:w-[53%] lg:block"
         initial={{ scale: 1.14, opacity: 0 }}
@@ -86,14 +88,25 @@ export function Hero() {
           style={{ clipPath: "url(#heroWave)", WebkitClipPath: "url(#heroWave)" }}
         >
           <HeroVideo className="h-full w-full object-cover" />
-          {/* legibility scrim where text can reach the video's edge */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/35 to-transparent" />
         </div>
       </motion.div>
 
-      {/* Text — flush to the left edge, larger */}
-      <div className="relative z-10 w-full px-6 sm:px-10 lg:pl-16 lg:pr-0 xl:pl-24">
-        <div className="max-w-[36rem] lg:max-w-[38rem] xl:max-w-[46rem]">
+      {/* Mobile: the video is the section background — text sits on top of it */}
+      <motion.div
+        className="absolute inset-0 lg:hidden"
+        initial={{ scale: 1.12, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.6, ease: EASE }}
+      >
+        <HeroVideo className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/88 to-background/98" />
+        <div className="absolute inset-0 bg-background/35" />
+      </motion.div>
+
+      {/* Text — nudged in from the left edge, two-line headline */}
+      <div className="relative z-10 w-full px-6 sm:px-10 lg:pl-24 lg:pr-0 xl:pl-32">
+        <div className="max-w-[34rem] sm:max-w-xl lg:max-w-none">
           <motion.span
             className="eyebrow inline-flex items-center gap-3 text-primary"
             {...fromLeft(0)}
@@ -102,16 +115,17 @@ export function Hero() {
             Логопед для детей · онлайн и очно
           </motion.span>
 
-          <h1 className="mt-8 font-display text-[3rem] font-extrabold leading-[1.04] tracking-tight text-foreground sm:text-7xl lg:text-[4rem] xl:text-[5.2rem]">
-            <Line delay={0.15}>Ваш ребёнок</Line>
-            <Line delay={0.3}>заговорит чисто</Line>
-            <Line delay={0.45}>
-              <span className="text-primary">в игре, без слёз</span>
+          <h1 className="mt-7 font-display text-[1.95rem] font-extrabold leading-[1.12] tracking-tight text-foreground sm:text-[2.7rem] sm:leading-[1.08] lg:text-[3.3rem] lg:leading-[1.05] xl:text-[3.9rem]">
+            <Line delay={0.15}>
+              <span className="lg:whitespace-nowrap">Ваш ребёнок заговорит чисто</span>
+            </Line>
+            <Line delay={0.32}>
+              <span className="text-primary">в игре без слёз</span>
             </Line>
           </h1>
 
           <motion.p
-            className="mt-8 max-w-xl text-xl leading-relaxed text-muted-foreground"
+            className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
             {...fromLeft(0.62)}
           >
             Не ждите, пока «само пройдёт». Поставлю звуки, запущу речь и подготовлю
@@ -120,14 +134,14 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center"
+            className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
             {...fromLeft(0.78)}
           >
             <PrimaryCta>Записаться бесплатно</PrimaryCta>
             <GhostCta href="#process">Как это работает</GhostCta>
           </motion.div>
 
-          <motion.div className="mt-12 flex items-center gap-4" {...fromLeft(0.95)}>
+          <motion.div className="mt-11 flex items-center gap-4" {...fromLeft(0.95)}>
             <div className="flex -space-x-3">
               {["/images/avatar-1.jpg", "/images/avatar-2.jpg", "/images/avatar-3.jpg"].map(
                 (src) => (
@@ -153,17 +167,6 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Mobile / tablet: video with a wave-cut top edge */}
-          <motion.div
-            className="mt-12 lg:hidden"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: EASE, delay: 1.05 }}
-          >
-            <div className="wave-mask-top relative aspect-[4/3] w-full overflow-hidden">
-              <HeroVideo className="h-full w-full object-cover" />
-            </div>
-          </motion.div>
         </div>
       </div>
 

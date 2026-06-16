@@ -36,7 +36,7 @@ const STATS = [
 
 export function Stats() {
   return (
-    <section id="stats" className="surface-alt relative px-5 py-16 sm:px-8 sm:py-20">
+    <section id="stats" className="relative px-5 py-16 sm:px-8 sm:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="rounded-[2.5rem] border border-white/10 bg-card/55 px-6 py-12 shadow-soft backdrop-blur-xl sm:px-12">
           <Stagger
