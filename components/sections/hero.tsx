@@ -3,12 +3,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ChevronDown, Star } from "lucide-react";
+import {
+  ChevronDown,
+  Star,
+  GraduationCap,
+  Heart,
+  ShieldCheck,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import { PrimaryCta, GhostCta } from "@/components/cta";
+import { HeroDecor } from "@/components/hero-decor";
 
 const EASE = [0.22, 0.61, 0.36, 1] as const;
 
-/* A headline line that slides in from the left edge. */
 function Line({ children, delay }: { children: React.ReactNode; delay: number }) {
   return (
     <motion.span
@@ -30,18 +38,45 @@ function fromLeft(delay: number) {
   };
 }
 
-function HeroVideo({ className }: { className?: string }) {
+const FEATURES: { icon: LucideIcon; title: string; sub: string }[] = [
+  { icon: GraduationCap, title: "Высшее педагогическое", sub: "образование" },
+  { icon: Heart, title: "Индивидуальный подход", sub: "к каждому ребёнку" },
+  { icon: ShieldCheck, title: "Современные методики", sub: "с доказанной эффективностью" },
+  { icon: Sparkles, title: "Удобный формат", sub: "онлайн и очно" },
+];
+
+/* The portrait with its glow, blob and a soft fade at the bottom. */
+function Portrait() {
   return (
-    <video
-      className={className}
-      autoPlay
-      muted
-      loop
-      playsInline
-      poster="/images/hero-poster.jpg"
-    >
-      <source src="/video/hero.mp4" type="video/mp4" />
-    </video>
+    <>
+      {/* soft glow */}
+      <div
+        className="absolute left-1/2 top-[42%] -z-10 h-[80%] w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[90px]"
+        aria-hidden="true"
+      />
+      {/* warm blob */}
+      <div
+        className="absolute left-1/2 top-[44%] -z-10 h-[68%] w-[74%] -translate-x-1/2 -translate-y-1/2 rounded-[46%_54%_48%_52%/54%_46%_54%_46%] bg-[hsl(20_32%_20%)]"
+        aria-hidden="true"
+      />
+      <HeroDecor />
+      <div
+        className="relative h-full w-full"
+        style={{
+          maskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+          WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+        }}
+      >
+        <Image
+          src="/images/hero-portrait-2.png"
+          alt="Логопед — Анна Светлова"
+          fill
+          priority
+          sizes="(max-width: 1024px) 90vw, 720px"
+          className="object-contain object-bottom drop-shadow-[0_28px_55px_rgba(0,0,0,0.55)]"
+        />
+      </div>
+    </>
   );
 }
 
@@ -49,64 +84,22 @@ export function Hero() {
   return (
     <section
       id="about"
-      className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-16 lg:pt-0 lg:pb-0"
+      className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-12 lg:pt-0 lg:pb-0"
     >
       <span id="hero" className="absolute top-0" aria-hidden="true" />
 
-      {/* Animated wave clip-paths */}
-      <svg width="0" height="0" className="absolute" aria-hidden="true">
-        <defs>
-          {/* Desktop: wavy left edge */}
-          <clipPath id="heroWave" clipPathUnits="objectBoundingBox">
-            <path d="M1 0 L0.13 0 C0 0.17 0.26 0.33 0.1 0.5 C-0.06 0.67 0.26 0.83 0.13 1 L1 1 Z">
-              <animate
-                attributeName="d"
-                dur="7s"
-                repeatCount="indefinite"
-                calcMode="spline"
-                keyTimes="0;0.5;1"
-                keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
-                values="M1 0 L0.13 0 C0 0.17 0.26 0.33 0.1 0.5 C-0.06 0.67 0.26 0.83 0.13 1 L1 1 Z;
-                M1 0 L0.1 0 C0.26 0.17 0 0.33 0.16 0.5 C0.3 0.67 0 0.83 0.1 1 L1 1 Z;
-                M1 0 L0.13 0 C0 0.17 0.26 0.33 0.1 0.5 C-0.06 0.67 0.26 0.83 0.13 1 L1 1 Z"
-              />
-            </path>
-          </clipPath>
-
-        </defs>
-      </svg>
-
-      {/* Desktop: full-height video with an animated wave edge */}
+      {/* Desktop portrait — large, anchored to the bottom-right, bleeding to edges */}
       <motion.div
-        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[47%] xl:w-[53%] lg:block"
-        initial={{ scale: 1.14, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.8, ease: EASE }}
+        className="absolute bottom-0 right-0 hidden h-[92%] w-[50%] xl:w-[48%] lg:block"
+        initial={{ opacity: 0, scale: 0.97 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.1, ease: EASE, delay: 0.2 }}
       >
-        <div
-          className="relative h-full w-full"
-          style={{ clipPath: "url(#heroWave)", WebkitClipPath: "url(#heroWave)" }}
-        >
-          <HeroVideo className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/35 to-transparent" />
-        </div>
+        <Portrait />
       </motion.div>
 
-      {/* Mobile: the video is the section background — text sits on top of it */}
-      <motion.div
-        className="absolute inset-0 lg:hidden"
-        initial={{ scale: 1.12, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.6, ease: EASE }}
-      >
-        <HeroVideo className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/88 to-background/98" />
-        <div className="absolute inset-0 bg-background/35" />
-      </motion.div>
-
-      {/* Text — nudged in from the left edge, two-line headline */}
-      <div className="relative z-10 w-full px-6 sm:px-10 lg:pl-24 lg:pr-0 xl:pl-32">
-        <div className="max-w-[34rem] sm:max-w-xl lg:max-w-none">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 sm:px-8">
+        <div className="max-w-[40rem]">
           <motion.span
             className="eyebrow inline-flex items-center gap-3 text-primary"
             {...fromLeft(0)}
@@ -115,18 +108,16 @@ export function Hero() {
             Логопед для детей · онлайн и очно
           </motion.span>
 
-          <h1 className="mt-7 font-display text-[1.95rem] font-extrabold leading-[1.12] tracking-tight text-foreground sm:text-[2.7rem] sm:leading-[1.08] lg:text-[3.3rem] lg:leading-[1.05] xl:text-[3.9rem]">
-            <Line delay={0.15}>
-              <span className="lg:whitespace-nowrap">Ваш ребёнок заговорит чисто</span>
-            </Line>
+          <h1 className="mt-6 font-display text-[2.3rem] font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-[3.2rem] sm:leading-[1.05] lg:text-[3.6rem] xl:text-[4.1rem]">
+            <Line delay={0.15}>Ваш ребёнок заговорит</Line>
             <Line delay={0.32}>
-              <span className="text-primary">в игре без слёз</span>
+              <span className="text-primary">чисто и уверенно</span>
             </Line>
           </h1>
 
           <motion.p
-            className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
-            {...fromLeft(0.62)}
+            className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+            {...fromLeft(0.6)}
           >
             Не ждите, пока «само пройдёт». Поставлю звуки, запущу речь и подготовлю
             к школе — по программе под вашего ребёнка. Первый разбор речи и план
@@ -134,22 +125,22 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
-            {...fromLeft(0.78)}
+            className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center"
+            {...fromLeft(0.74)}
           >
             <PrimaryCta>Записаться бесплатно</PrimaryCta>
             <GhostCta href="#process">Как это работает</GhostCta>
           </motion.div>
 
-          <motion.div className="mt-11 flex items-center gap-4" {...fromLeft(0.95)}>
+          <motion.div className="mt-9 flex items-center gap-4" {...fromLeft(0.9)}>
             <div className="flex -space-x-3">
               {["/images/avatar-1.jpg", "/images/avatar-2.jpg", "/images/avatar-3.jpg"].map(
                 (src) => (
                   <span
                     key={src}
-                    className="relative h-12 w-12 overflow-hidden rounded-full ring-[3px] ring-background"
+                    className="relative h-11 w-11 overflow-hidden rounded-full ring-[3px] ring-background"
                   >
-                    <Image src={src} alt="" fill sizes="48px" className="object-cover" />
+                    <Image src={src} alt="" fill sizes="44px" className="object-cover" />
                   </span>
                 )
               )}
@@ -157,22 +148,50 @@ export function Hero() {
             <div>
               <div className="flex items-center gap-0.5 text-primary">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" strokeWidth={0} />
+                  <Star key={i} className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
                 ))}
               </div>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="mt-0.5 text-sm text-muted-foreground">
                 <span className="font-semibold text-foreground">200+ детей</span> уже
                 заговорили чисто на моих занятиях
               </p>
             </div>
           </motion.div>
 
+          <motion.div
+            className="mt-10 grid max-w-2xl grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-4"
+            {...fromLeft(1.05)}
+          >
+            {FEATURES.map((f) => (
+              <div key={f.title} className="flex flex-col items-start gap-3">
+                <span className="grid h-12 w-12 place-items-center rounded-full text-primary ring-1 ring-primary/30">
+                  <f.icon className="h-5 w-5" strokeWidth={1.6} />
+                </span>
+                <span className="text-[13px] font-semibold leading-tight text-foreground">
+                  {f.title}
+                  <span className="block font-normal text-muted-foreground">
+                    {f.sub}
+                  </span>
+                </span>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Mobile portrait */}
+          <motion.div
+            className="relative mt-10 h-[26rem] w-full lg:hidden"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: EASE, delay: 0.5 }}
+          >
+            <Portrait />
+          </motion.div>
         </div>
       </div>
 
       <motion.a
         href="#stats"
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground lg:flex"
+        className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground lg:flex"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.4 }}

@@ -13,6 +13,7 @@ import { Contact } from "@/components/sections/contact";
 import { BookingCalendar } from "@/components/sections/booking-calendar";
 import { LocationMap } from "@/components/sections/location-map";
 import { Footer } from "@/components/sections/footer";
+import { Divider } from "@/components/divider";
 
 export default function Home() {
   return (
@@ -21,16 +22,25 @@ export default function Home() {
       <main className="page-surface overflow-x-hidden">
         <Hero />
         <Stats />
+        <Divider />
         <About />
+        <Divider />
         <Services />
+        <Divider />
         <Process />
+        <Divider />
         <Gallery />
         <Band />
         <WhyMe />
+        <Divider />
         <Reviews />
+        <Divider />
         <Faq />
+        <Divider />
         <Contact />
+        <Divider />
         <BookingCalendar />
+        <Divider />
         <LocationMap />
       </main>
       <Footer />
